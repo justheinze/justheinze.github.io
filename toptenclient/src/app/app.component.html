@@ -1,0 +1,3 @@
+<h1>Top Ten</h1>
+<app-login *ngIf="tenner.loggedIn == false"></app-login>
+<app-board *ngIf="tenner.loggedIn" [refresh]="tenner.refreshPlayers"></app-board>

@@ -1,0 +1,5 @@
+<form>
+    <label for="name">Wähle deinen Namen</label><br>
+    <input type="text" id="name" name="name" [(ngModel)]="playerName">
+    <button id="submit" (click)="onSubmit()" *ngIf="playerName">Los Gehts</button>
+</form>
