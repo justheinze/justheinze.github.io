@@ -1,0 +1,56 @@
+<div>
+    <p>Zuschauer: {{tenner.game.viewer}}</p>
+    <div id="board">
+        <div id="finished" *ngIf="tenner.game.finished">{{tenner.end}}</div>
+        <div id="thema">
+            <p *ngIf="tenner.game.started">Round: {{tenner.game.round}}</p>
+            <h2>Thema</h2>
+            <p>{{tenner.game.thema}}</p>
+        </div>
+        <div id="brett">
+            <div id="captain">
+                Käpten: {{tenner.game.players[tenner.game.captain]}}
+            </div>
+            <div id="einhorn">
+                {{tenner.unicorns}}
+            </div>
+            <div id="shit">
+                {{tenner.shits}}
+            </div>
+            <div id="zahl">
+                {{tenner.game.currentNumber}}
+            </div>
+        </div>
+        <div id="eigeneZahl" *ngIf="!tenner.isViewer">
+            Deine Zahl: {{tenner.game.numbers[tenner.game.players.indexOf(tenner.name)]}}
+        </div>
+        <div id="gameButtons">
+            <button id="joinGame" *ngIf="tenner.isViewer" (click)="tenner.joinGame()">Spiel beitreten</button>
+            <button id="joinViewer" *ngIf="!tenner.isViewer" (click)="tenner.joinViewer()">Zuschauern beitreten</button>
+            <button id="startGame" *ngIf="!tenner.game.started && tenner.game.players.length >= 4 && !tenner.isViewer"
+                (click)="tenner.startGame()">Spiel starten</button>
+            <button id="next" (click)="tenner.next()" *ngIf="tenner.game.started">Nächste Runde</button>
+            <button id="newGame" (click)="tenner.newGame()">Neues Spiel</button>
+            <button id="changeNSFW" *ngIf="!tenner.game.started" (click)="tenner.setNSFW()"
+                [ngClass]="{'nsfwOn': tenner.game.isNSFW, 'nsfwOff': !tenner.game.isNSFW}">18+ Variante</button>
+        </div>
+        <div id="players">
+            <div *ngFor="let player of tenner.game.players">
+                <p id="player">{{player}}</p>
+                <div id="answersies" *ngIf="tenner.game.started">
+                    <p *ngIf="tenner.name == player && !tenner.answered; else elseBlock">
+                        <input id="answer" [(ngModel)]="answer">
+                        <button (click)="onAnswer()" [hidden]="tenner.name != player"
+                            [disabled]="!answer">Abschicken</button>
+                    </p>
+                    <button id="guess" *ngIf="tenner.isCap"
+                        (click)="tenner.guess(tenner.game.numbers[tenner.game.players.indexOf(player)], player)"
+                        [disabled]="tenner.disabledGuess.includes(player)">Raten</button>
+                    <ng-template #elseBlock>
+                        <p>{{tenner.game.answers[tenner.game.players.indexOf(player)]}}</p>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

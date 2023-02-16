@@ -1,0 +1,15 @@
+#players div {
+    color: black;
+}
+
+.nsfwOn {
+    background-color: darkred;
+}
+
+.nsfwOff {
+    background-color: darkgreen;
+}
+
+.card {
+    background-color: grey;
+}
