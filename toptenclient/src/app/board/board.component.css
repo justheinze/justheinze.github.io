@@ -1,66 +1,15 @@
-div {
-    margin: auto;
-    text-align: center;
-}
-
-#board {
-    position: relative;
-}
-
-#thema {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform-origin: center;
-    transform: translate(-50%, 0);
-    border: 1px solid azure;
-    width: 500px;
-}
-
-#brett {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform-origin: center;
-    transform: translate(-50%, 150px);
-    border: 1px solid azure;
-    width: 500px;
-}
-#zahl {
-    width: 100%;
-}
-
-#eigeneZahl {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform-origin: center;
-    transform: translate(150%, -50px);
-}
-
-#gameButtons {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform-origin: center;
-    transform: translate(-50%, 365px);
-}
-
-#players {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform-origin: center;
-    transform: translate(-50%, 400px);
-}
 #players div {
-    border: 1px solid black;
+    color: black;
 }
 
 .nsfwOn {
-    background-color: red;
+    background-color: darkred;
 }
 
 .nsfwOff {
-    background-color: green;
+    background-color: darkgreen;
+}
+
+.card {
+    background-color: grey;
 }
