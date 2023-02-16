@@ -4,7 +4,7 @@
             <button id="newGame" class="btn btn-danger" (click)="tenner.newGame()">Neues Spiel</button>
             <button id="changeNSFW" class="btn btn-outline-light" *ngIf="!tenner.game.started"
                 (click)="tenner.setNSFW()"
-                [ngClass]="{'nsfwOn': tenner.game.isNSFW, 'nsfwOff': !tenner.game.isNSFW}">18+ Variante</button>
+                [ngClass]="{'nsfwOn': tenner.game.isNSFW == true, 'btn-secondary': tenner.game.isNSFW == false}">18+ Variante</button>
         </div>
         <div class="col-12" *ngIf="tenner.game.viewer.length !== 0">Zuschauer: {{tenner.game.viewer}}</div>
         <div id="finished" *ngIf="tenner.game.finished" class="col-12 my-3">

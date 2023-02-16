@@ -15,6 +15,7 @@ export class TennerService {
   socket!: Socket<DefaultEventsMap, DefaultEventsMap>;
   setupConnection() {
     this.socket = io('https://topten-server.onrender.com');
+    // this.socket = io('http://localhost:3000');
 
     this.socket.on('connected', (arg) => {
       console.log(arg);
@@ -37,6 +38,11 @@ export class TennerService {
       this.shits = this.game.shit + '/' + this.game.maxUnicorns + ' Häufchen';
       this.calcBar();
       if(this.game.round !== -1){
+        if(this.game.round > this.round){
+          this.answer = '';
+          this.answered = false;
+          this.disabledGuess = [];
+        }
         this.round = this.game.round;
       }
 
@@ -147,8 +153,6 @@ export class TennerService {
 
   next(): void {
     this.socket.emit('nextRound');
-    this.answered = false;
-    this.disabledGuess = [];
   }
 
   calcBar(): void {
@@ -168,7 +172,7 @@ export class TennerService {
   }
 
   setNSFW(): void {
-    this.socket.emit('setNSFW');
+    this.socket.emit('setNSFW', this.game);
   }
 
   join(): void {
