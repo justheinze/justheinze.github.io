@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { DefaultEventsMap } from '@socket.io/component-emitter';
-import { of } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
 
 @Injectable({
@@ -15,7 +14,7 @@ export class TennerService {
 
   socket!: Socket<DefaultEventsMap, DefaultEventsMap>;
   setupConnection() {
-    this.socket = io('https://topten-server.onrender.com:10000');
+    this.socket = io('https://topten-server.onrender.com');
 
     this.socket.on('connected', (arg) => {
       console.log(arg);
