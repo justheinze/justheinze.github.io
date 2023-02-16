@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { BoardComponent } from './board/board.component';
 import { FormsModule } from '@angular/forms';
 import { TennerService } from './tenner.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { TennerService } from './tenner.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    NgbModule,
   ],
   providers: [TennerService],
   bootstrap: [AppComponent]

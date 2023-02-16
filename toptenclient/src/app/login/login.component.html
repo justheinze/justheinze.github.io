@@ -1,5 +1,12 @@
-<form>
-    <label for="name">Wähle deinen Namen</label><br>
-    <input type="text" id="name" name="name" [(ngModel)]="playerName">
-    <button id="submit" (click)="onSubmit()" *ngIf="playerName">Los Gehts</button>
+<form class="container-md">
+    <div class="row justify-content-end">
+        
+        <div class="col-4">
+            <label for="name" class="form-label">Wähle deinen Namen</label>
+            <input type="text" id="name" class="form-control" name="name" [(ngModel)]="playerName">
+        </div>
+        <div class="col-4 align-self-end">
+            <button id="submit" class="btn btn-primary" (click)="onSubmit()" [disabled]="!playerName">Beitreten</button>
+        </div>
+    </div>
 </form>

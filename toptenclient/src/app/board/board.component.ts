@@ -32,9 +32,4 @@ export class BoardComponent implements OnInit {
     //   this.reloadPlayers();
     // }
   }
-
-  onAnswer(): void {
-    this.tenner.answering(this.answer);
-    this.answer = '';
-  }
 }

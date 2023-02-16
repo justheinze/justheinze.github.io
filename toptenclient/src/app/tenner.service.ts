@@ -36,6 +36,15 @@ export class TennerService {
 
       this.unicorns = this.game.unicorns + '/' + this.game.maxUnicorns + ' Einhörner';
       this.shits = this.game.shit + '/' + this.game.maxUnicorns + ' Häufchen';
+      this.calcBar();
+      if(this.game.round !== -1){
+        this.round = this.game.round;
+      }
+
+      if (this.game.answers[this.game.players.indexOf(this.name)]) {
+        this.answer = this.game.answers[this.game.players.indexOf(this.name)];
+        this.answered = true;
+      }
 
       this.refreshPlayers = true;
       if (this.game.finished) {
@@ -81,11 +90,14 @@ export class TennerService {
 
   unicorns: string = 'Einhörner';
   shits: string = 'Häufchen';
+  barPercent: number = 100;
   refreshPlayers: boolean = false;
   loggedIn: boolean = false;
   name: string = '';
+  round!: number;
   isCap: boolean = false;
   isViewer: boolean = true;
+  answer: string = '';
   answered: boolean = false;
   disabledGuess: string[] = [];
   end: string = '';
@@ -140,14 +152,20 @@ export class TennerService {
     this.disabledGuess = [];
   }
 
+  calcBar(): void {
+    this.barPercent = (this.game.unicorns / this.game.maxUnicorns) * 100;
+  }
+
   guess(numbi: number, player: string): void {
     this.socket.emit('guess', numbi);
+    this.calcBar();
     this.disabledGuess.push(player);
   }
 
-  answering(answer: string): void {
-    this.socket.emit('answer', answer);
+  answering(): void {
+    this.socket.emit('answer', this.answer);
     this.answered = true;
+    this.answer = '';
   }
 
   setNSFW(): void {
