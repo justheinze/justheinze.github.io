@@ -15,7 +15,7 @@ export class TennerService {
 
   socket!: Socket<DefaultEventsMap, DefaultEventsMap>;
   setupConnection() {
-    this.socket = io('https://topten-server.onrender.com:3221');
+    this.socket = io('https://topten-server.onrender.com:10000');
 
     this.socket.on('connected', (arg) => {
       console.log(arg);
