@@ -21,6 +21,12 @@ export class TennerService {
       console.log(arg);
     });
 
+    this.socket.on('wasConnected', (args) => {
+      if(this.game.started){
+        this.socket.emit('reloadGame', this.game);
+      }
+    });
+
     this.socket.on('state', (gamestate) => {
       this.game = gamestate;
       if (this.game.captain === this.game.players.indexOf(this.name) && this.game.captain !== -1) {
